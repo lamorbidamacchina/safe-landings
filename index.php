@@ -1,3 +1,4 @@
+<?php require_once("./includes/config.php");?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -25,7 +26,7 @@
       <?php  } ?>
 
         <form method="POST" action="save.php" name="f1">
-        <input name="sr" value="<?php echo $_GET['sr'];?>" type="hidden" />
+        <input name="source" value="<?php echo $_GET['source'];?>" type="hidden" />
         <input name="chk" value="" type="hidden" />
           <div class="form-group">
             <label for="nome">First Name</label>
@@ -33,7 +34,7 @@
           </div>
           <div class="form-group">
             <label for="cognome">Last Name</label>
-            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="last_name">
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
           </div>
           <div class="form-group">
             <label for="email">Email</label>
