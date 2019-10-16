@@ -1,5 +1,5 @@
 # safe-landings
-Collect safely private data from landing pages, using cryptography
+Safely collect private data from landing pages, using cryptography
 
 Safe Landings is a simple Php application aiming to provide better security for data collected through landing pages.
 This demo encrypts phone and email of the subscribers, making it impossible for an attacker to leak private data, even if he/she gains access to the database.
