@@ -32,14 +32,14 @@
   $dao->setIndexKey($index_key);
 
 
-  // controllo esistenza mail criptata
+  // check if mail already exists
   $email_hash = $dao->getBlindIndex($email);
   if ($dao->exists_email($email_hash)) {
     header("location: index.php?e=email_exists");
     exit();
   }
 
-  // controllo esistenza phone criptato
+  // check if phone already exists
   $phone_hash = $dao->getBlindIndex($phone);
   if ($dao->exists_phone($phone_hash)) {
     header("location: index.php?e=phone_exists");

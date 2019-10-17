@@ -138,7 +138,6 @@ class DAO {
     try  {
       $plaintext = sodium_crypto_secretbox_open($ciphertext, $nonce, $key);
       return $plaintext;
-      //return "DEBUG: plain text: ".$plaintext. "<br />// encoded text: ". $string . "<br />// nonce: ". base64_encode($nonce) . "<br />// cipher text: ". base64_encode($ciphertext);
     } 
     catch (Error $ex) {
       return "Cannot decrypt data.";
