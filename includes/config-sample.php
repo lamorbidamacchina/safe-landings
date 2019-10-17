@@ -16,6 +16,7 @@ error_reporting(E_ALL & ~E_STRICT & ~E_DEPRECATED & ~E_NOTICE & ~E_WARNING);
 $hostName = $_SERVER["HTTP_HOST"];
 $completeUrl = $_SERVER['PHP_SELF']."?".$_SERVER['QUERY_STRING'];
 
+// INSERT YOUR DATABASE CONNECTION DATA HERE
 $DB_HOST = "";
 $DB_NAME = "";
 $DB_USR = "";
@@ -46,8 +47,8 @@ $db->exec("SET CHARACTER SET utf8");
 
 
 // generate values using /generate.php script
-$private_key = ""; // private key
-$index_key = ""; // blind index key
+$private_key = ""; // INSERT PRIVATE KEY HERE
+$index_key = ""; // INSERT BLIND INDEX KEY HERE
 
 if ($private_key == "" || $index_key =="") {
 	header("location: generate_key.php");
