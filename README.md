@@ -7,4 +7,4 @@ At the same time, an hypotetical backoffice user is allowed to view/export all t
 
 Safe Landings relies on LibSodium library. 
 
-The optimal architecture for this application would be to use a separate server for the database, so that data is physically separated from the private key needed to decrypt it.
+The optimal architecture for this application requires a separate server for the database, so that data is physically separated from the private key needed to decrypt it.
