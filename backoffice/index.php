@@ -37,7 +37,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Safe Landing Demo</title>
+    <title>Safe Landings Demo</title>
     <style>
       .moreinfo { border-bottom: 1px dotted #000; text-decoration: none;}
     </style>
