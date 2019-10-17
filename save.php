@@ -40,8 +40,8 @@
   }
 
   // controllo esistenza phone criptato
-  $phone = $dao->getBlindIndex($phone);
-  if ($dao->exists_phone($phone)) {
+  $phone_hash = $dao->getBlindIndex($phone);
+  if ($dao->exists_phone($phone_hash)) {
     header("location: index.php?e=phone_exists");
     exit();
   }

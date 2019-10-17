@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Safe Landing Demo</title>
+    <title>Safe Landings Demo</title>
   </head>
   <body>
     
@@ -30,22 +30,22 @@
         <input name="chk" value="" type="hidden" />
           <div class="form-group">
             <label for="nome">First Name</label>
-            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name">
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="First Name" required>
           </div>
           <div class="form-group">
             <label for="cognome">Last Name</label>
-            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name">
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Last Name" required>
           </div>
           <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Your email...">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Your email..." required>
           </div>
           <div class="form-group">
-            <label for="telefono">Phone</label>
-            <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone number">
+            <label for="phone">Phone</label>
+            <input type="text" class="form-control" id="phone" name="phone" placeholder="Your phone number" required>
           </div>
           <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="privacy" name="privacy" value="1">
+            <input type="checkbox" class="form-check-input" id="privacy" name="privacy" value="1" required>
             <label class="form-check-label" for="privacy">Privacy</label>
           </div>
           <div class="form-group" style="margin-top:20px;">

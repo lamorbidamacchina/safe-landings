@@ -47,15 +47,12 @@ class DAO {
       $key = $this->key;
       $key = base64_decode($key);
       // get nonce for encryption
-      $nonce_first_name = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
       $nonce_email = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
       $nonce_phone = random_bytes(SODIUM_CRYPTO_SECRETBOX_NONCEBYTES);
       // encrypt data
-      $first_name = sodium_crypto_secretbox($first_name, $nonce_email, $key);
       $email = sodium_crypto_secretbox($email, $nonce_email, $key);
       $phone = sodium_crypto_secretbox($phone, $nonce_phone, $key);
       // encode data for saving into db
-      $first_name = base64_encode($nonce_first_name . $first_name);
       $email = base64_encode($nonce_email . $email);
       $phone = base64_encode($nonce_phone . $phone);
 
@@ -108,7 +105,7 @@ class DAO {
 		}
 		try {
 			$query = $this->db->prepare("SELECT id FROM subscribers WHERE phone_hash=?");
-			$data = Array($email);
+			$data = Array($phone);
 			$query->execute($data);
 			$all_numbers = $query->fetchAll();
 			foreach($all_numbers as $row) {
@@ -122,7 +119,7 @@ class DAO {
 
   function listEncrypted() {
 		try {
-			$query = $this->db->prepare('SELECT id, first_name, last_name, email, phone, privacy from subscribers order by id desc');
+			$query = $this->db->prepare('SELECT id, first_name, last_name, email, phone, privacy, creation_date from subscribers order by id desc');
 			$query->execute();
 			$rows = $query->fetchAll();
 			return $rows;
@@ -133,14 +130,122 @@ class DAO {
 		}
   }
 
-  function dec($string) {
+  public function dec($string) {
     $decoded = base64_decode($string);
     $key = base64_decode($this->key);
     $nonce = mb_substr($decoded, 0, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, '8bit');
-    $ciphertext = mb_substr($decoded, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit');
-    $plaintext = sodium_crypto_secretbox_open($ciphertext, $nonce, $key);
-    return $plaintext;
+    $ciphertext = mb_substr($decoded, SODIUM_CRYPTO_SECRETBOX_NONCEBYTES, null, '8bit');				
+    try  {
+      $plaintext = sodium_crypto_secretbox_open($ciphertext, $nonce, $key);
+      return $plaintext;
+      //return "DEBUG: plain text: ".$plaintext. "<br />// encoded text: ". $string . "<br />// nonce: ". base64_encode($nonce) . "<br />// cipher text: ". base64_encode($ciphertext);
+    } 
+    catch (Error $ex) {
+      return "Cannot decrypt data.";
+    } 
+    catch (Exception $ex) {
+      return "Cannot decrypt data.";
+    }
   }
+
+  public function listItems($source,$id,$q,$start=0,$end=100,$email="",$phone="") {
+		$where_clause = "";
+    	if ($source != "") {
+			$where_clause .= "(source = :source) and ";
+		}
+		if ($q != "") {
+			$where_clause .= "(last_name LIKE :q ) and ";
+		}
+		if ($id != "") {
+			$where_clause .= "(id = :id) and ";
+		}
+		if ($email != "") {
+			$where_clause .= "(email_hash = :email_hash) and ";
+		}
+		if ($phone != "") {
+			$where_clause .= "(phone_hash = :phone_hash) and ";
+		}
+
+		try {
+			$sql = "SELECT id, first_name, last_name, email, phone, privacy, source, creation_date
+			FROM  subscribers
+			WHERE ".$where_clause." id <> ''
+			ORDER BY id DESC
+			LIMIT :start,:end";
+			$query = $this->db->prepare($sql);
+      if ($source != "") {
+				$query->bindParam(':source', $source, PDO::PARAM_STR);
+			}
+			if ($q != "") {
+				$query->bindParam(':q', $tempString = "%".$q."%", PDO::PARAM_STR);
+			}
+			if ($id != "") {
+				$query->bindParam(':id', $id, PDO::PARAM_STR);
+			}
+			if ($email != "") {
+				$query->bindParam(':email_hash', $email, PDO::PARAM_STR);
+			}
+			if ($phone != "") {
+				$query->bindParam(':phone_hash', $phone, PDO::PARAM_STR);
+			}
+			$query->bindParam(':start', $start, PDO::PARAM_INT);
+			$query->bindParam(':end', $end, PDO::PARAM_INT);
+			$query->execute();
+			$rows = $query->fetchAll();
+			return $rows;
+		}
+		catch(PDOException $e) {
+			echo "Error: " . $e->getMessage();
+      return false;
+		}
+	}
+
+  public function countItems($source,$id,$q="",$email="",$phone="") {
+		$where_clause = "";
+    if ($source != "") {
+			$where_clause .= "(source = :source) and ";
+		}
+		if ($q != "") {
+			$where_clause .= "(last_name LIKE :q ) and ";
+		}
+		if ($id != "") {
+			$where_clause .= "(id = :id) and ";
+    }
+    if ($email != "") {
+			$where_clause .= "(email_hash = :email_hash) and ";
+		}
+		if ($phone != "") {
+			$where_clause .= "(phone_hash = :phone_hash) and ";
+		}
+		try {
+			$sql = "SELECT count(id) as c FROM  subscribers
+			WHERE ".$where_clause." id <> ''
+			ORDER BY id DESC";
+			$query = $this->db->prepare($sql);
+      if ($source != "") {
+				$query->bindParam(':source', $source, PDO::PARAM_STR);
+			}
+			if ($q != "") {
+				$query->bindParam(':q', $tempString = "%".$q."%", PDO::PARAM_STR);
+			}
+			if ($id != "") {
+				$query->bindParam(':id', $id, PDO::PARAM_STR);
+      }
+      if ($email != "") {
+				$query->bindParam(':email_hash', $email, PDO::PARAM_STR);
+			}
+			if ($phone != "") {
+				$query->bindParam(':phone_hash', $phone, PDO::PARAM_STR);
+			}
+			$query->execute();
+			$rows = $query->fetchAll();
+			return $rows;
+		}
+		catch(PDOException $e) {
+			echo "Error: " . $e->getMessage();
+      return false;
+		}
+	}
 
 
 
