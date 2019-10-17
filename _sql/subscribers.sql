@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Creato il: Ott 17, 2019 alle 18:50
+-- Creato il: Ott 17, 2019 alle 19:15
 -- Versione del server: 5.5.64-MariaDB
 -- Versione PHP: 7.1.14
 
@@ -42,7 +42,6 @@ CREATE TABLE `subscribers` (
   `creation_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-
 --
 -- Indici per le tabelle scaricate
 --
@@ -52,7 +51,8 @@ CREATE TABLE `subscribers` (
 --
 ALTER TABLE `subscribers`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `email_hash` (`email_hash`,`phone_hash`);
+  ADD KEY `email_hash` (`email_hash`),
+  ADD KEY `phone_hash` (`phone_hash`);
 
 --
 -- AUTO_INCREMENT per le tabelle scaricate
