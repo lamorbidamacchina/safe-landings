@@ -17,6 +17,7 @@
     <div class="row">
       <div class="col-md-12">
       <h1>Safe Landing - demo</h1>
+      <div>Have a look at the <a href="./backoffice/" target="_blank">backoffice demo</a> too.</div>
       <hr style="margin:20px 0;" />
       
       <?php if($_GET["e"]."" != "") { ?>
