@@ -122,8 +122,8 @@
                                       <td><?php echo $row['id']?></td>
                                       <td><?php echo $row['first_name'];?></td>
                                       <td><?php echo $row['last_name']?></td>
-                                      <td><span class="moreinfo" data-toggle="tooltip" title="string actually stored in database: <?php echo $row['email'];?>"><?php echo $dao->dec($row['email']);?></span></td>
-                                      <td><span class="moreinfo" data-toggle="tooltip" title="string actually stored in database: <?php echo $row['phone'];?>"><?php echo $dao->dec($row['phone']);?></span></td>
+                                      <td><span class="moreinfo" data-toggle="tooltip" title="string stored in database: <?php echo $row['email'];?>"><?php echo $dao->dec($row['email']);?></span></td>
+                                      <td><span class="moreinfo" data-toggle="tooltip" title="string stored in database: <?php echo $row['phone'];?>"><?php echo $dao->dec($row['phone']);?></span></td>
                                       <td><?php echo $row['creation_date']?></td>
                                       <td><?php echo $row['source']?></td>                           
                                       <td><?php echo $row['privacy']?></td>
