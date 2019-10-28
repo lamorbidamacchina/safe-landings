@@ -1,5 +1,4 @@
 <?php 
-require_once("./includes/config.php");
 // Generating your encryption key
 $private_key = random_bytes(SODIUM_CRYPTO_SECRETBOX_KEYBYTES);
 // Generating your blind index key
@@ -32,13 +31,14 @@ $index_key = random_bytes(SODIUM_CRYPTO_PWHASH_SALTBYTES);
        Your blind index key:<br /><span class="keybox"><?php echo base64_encode($index_key);?></span><br />
        <br />
        Save them in a safe place.<br />
+       
        Then, open your config.php file in "/includes" folder and change lines 50 and 51 with these two lines of code:<br />
       <pre>
 $private_key = "<?php echo base64_encode($private_key);?>"; // YOUR PRIVATE KEY 
 $index_key = "<?php echo base64_encode($index_key);?>"; // YOUR BLIND INDEX KEY 
       </pre>
       Upload config.php file in "/includes" folder and reload the <a href="index.php">homepage</a>.<br /> 
-
+      Once you saved your keys, you can delete this file from the server.<br />
       </p>
       </div>
     </div>
