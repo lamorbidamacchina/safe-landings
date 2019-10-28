@@ -2,13 +2,13 @@
 
 class DAO {
 
-  protected $db;
+	protected $db;
   protected $private_key;
   protected $index_key;
 
-  public function setDb($db)
-  {
-    $this->db = $db;
+	public function setDb($db)
+	{
+		$this->db = $db;
   }  
   
   public function setKey($private_key)
