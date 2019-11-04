@@ -12,7 +12,7 @@ The optimal architecture for this application requires a separate server for the
 ## Requirements
 
 * An Apache web server
-* Php 7.1 or more
+* Php 7.1 or more, with Sodium libraries
 * Mysql or MariaDB
 
 ## Installation
