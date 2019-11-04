@@ -55,8 +55,7 @@ if ($private_key == "" || $index_key =="") {
 	exit();
 }
 
-function __autoload( $class )
-{
+spl_autoload_register(function($class) {
 	$load = SITE_ROOT.'/classes/'.$class.'.php';
 	if( file_exists( $load ) )
 	{
@@ -66,6 +65,6 @@ function __autoload( $class )
 	{
 		die( "Can't find a file for class: $class - $load \n" );
 	}
-}
+});
 
 ?>
