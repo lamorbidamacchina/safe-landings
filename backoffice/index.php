@@ -60,7 +60,7 @@
     <div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Subcribers <?php if ($_GET["source"]."" != "") { echo " ".$_GET["source"];}?>: <?php echo $countItems[0]["c"];?></h1>
+                    <h1 class="page-header">Subscribers <?php if ($_GET["source"]."" != "") { echo " ".$_GET["source"];}?>: <?php echo $countItems[0]["c"];?></h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
