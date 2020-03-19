@@ -9,6 +9,9 @@ Safe Landings relies on Sodium library.
 
 The optimal architecture for this application requires a separate server for the database, so that data is physically separated from the private key needed to decrypt it. Please also consider to move your keys outside the public folder of your server for better security.
 
+Full explanation of the prototype can be found here:
+https://medium.com/swlh/how-to-store-encrypted-data-collected-by-your-web-application-with-php7-and-libsodium-457b23cae017
+
 ## Requirements
 
 * An Apache web server
